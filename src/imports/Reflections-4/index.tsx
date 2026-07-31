@@ -19,10 +19,8 @@ function Challenges() {
         <span className="font-['Montaga:Regular',sans-serif] leading-[1.35] text-[#0f3460] text-[20px]">
           Volunteer at an
           <br aria-hidden />
-          Animal Rescue or Shelte
+          Animal Rescue or Shelter
         </span>
-        <span className="leading-[1.35] text-[#0f3460] text-[15px]">r</span>
-        <span className="leading-[1.35] text-[15px]">{` `}</span>
       </p>
     </div>
   );
