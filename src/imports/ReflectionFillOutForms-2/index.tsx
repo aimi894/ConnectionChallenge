@@ -20,9 +20,8 @@ function Challenges() {
         <span className="font-['Montaga:Regular',sans-serif] leading-[1.35] text-[#0f3460] text-[20px]">
           Volunteer at an
           <br aria-hidden />
-          Animal Rescue or Shelte
+          Animal Rescue or Shelter
         </span>
-        <span className="leading-[1.35] text-[15px]">{`r `}</span>
       </p>
     </div>
   );
@@ -267,7 +266,7 @@ function Completed1() {
   return (
     <div className="overflow-clip relative shrink-0 size-[20px]" data-name="completed">
       <svg className="absolute block inset-0 size-full" fill="none" height="19.9999" preserveAspectRatio="none" viewBox="0 0 19.9999 19.9999" width="19.9999">
-        <g id="å¾å±_x0020_1">
+        <g id="å¾å±_x0020_1">
           <g id="Vector" />
           <path clipRule="evenodd" d={svgPaths.p13641980} fill="var(--fill-0, #3AA25A)" fillRule="evenodd" id="Vector_2" />
         </g>
