@@ -46,6 +46,10 @@ interface ReflectionFieldBounds {
   height: number;
 }
 
+// Fixed bottom navigation starts at top:769px (see <Menu> below); keep interactive
+// overlay fields (textareas) from extending into that zone so nav buttons stay clickable.
+const MENU_SAFE_BOTTOM = 757;
+
 const reflectionFieldConfig: Array<{ key: ReflectionFieldKey; label: string; placeholder: string }> = [
   { key: "memorable", label: "What made this experience memorable?", placeholder: "Type your answer…" },
   { key: "connection", label: "Did you do this with anyone?", placeholder: "Type your answer…" },
@@ -138,7 +142,9 @@ export default function App() {
     const fields = Array.from(questions.querySelectorAll<HTMLElement>('[data-name="Input field"], [data-name="Input fiels"]'));
     setReflectionFieldBounds(fields.slice(0, reflectionFieldConfig.length).map((field) => {
       const rect = field.getBoundingClientRect();
-      return { top: rect.top - frameRect.top, left: rect.left - frameRect.left, width: rect.width, height: rect.height };
+      const top = rect.top - frameRect.top;
+      const height = Math.max(0, Math.min(rect.height, MENU_SAFE_BOTTOM - top));
+      return { top, left: rect.left - frameRect.left, width: rect.width, height };
     }));
   }, [screen, formScrollTop]);
 
@@ -161,7 +167,9 @@ export default function App() {
 
     setWriteOwnFieldBounds(fields.map((field) => {
       const rect = field.getBoundingClientRect();
-      return { top: rect.top - frameRect.top, left: rect.left - frameRect.left, width: rect.width, height: rect.height };
+      const top = rect.top - frameRect.top;
+      const height = Math.max(0, Math.min(rect.height, MENU_SAFE_BOTTOM - top));
+      return { top, left: rect.left - frameRect.left, width: rect.width, height };
     }));
   }, [screen, writeOwnScrollTop]);
 
@@ -563,7 +571,7 @@ export default function App() {
           </>
         )}
 
-        <div className="absolute z-[22]" style={{ top: 769, left: 4 }}>
+        <div className="absolute z-[30]" style={{ top: 769, left: 4 }}>
           <Menu
             property1={menuState}
             className="relative flex items-center gap-[20px] overflow-hidden rounded-[40px] border border-white/65 bg-white/50 px-[24px] py-[12px] shadow-[0_8px_24px_rgba(15,52,94,0.14)] backdrop-blur-xl"
